@@ -23,6 +23,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: win-af-unix          # 明确指定分支
+          fetch-depth: 0
+          submodules: recursive
           # 默认已带 token，私有仓库也能拉下来
 
       # 2. 配置 Python（runner 自带 3.x，但显式声明更稳妥）

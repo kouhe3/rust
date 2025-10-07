@@ -34,5 +34,5 @@ jobs:
       # 3. 运行测试
       - name: Run x.py test library/std
         shell: cmd                  # 也可以用 powershell
-        run: python x.py test library/std
+        run: python x.py test --stage 2 library/std
         # 默认工作目录就是 ${{ github.workspace }}，即仓库根目录

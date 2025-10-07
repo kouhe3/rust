@@ -1,0 +1,27 @@
+name: CI-win-test
+
+on:
+  workflow_dispatch:               # 手动按钮触发（可选）
+
+jobs:
+  test-std:
+    runs-on: windows-latest         # Windows 服务器环境
+    steps:
+      # 1. 检出指定分支（默认就是仓库本身）
+      - name: Checkout win-af-unix
+        uses: actions/checkout@v4
+        with:
+          ref: win-af-unix          # 明确指定分支
+          # 默认已带 token，私有仓库也能拉下来
+
+      # 2. 配置 Python（runner 自带 3.x，但显式声明更稳妥）
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'    # 按需改版本
+
+      # 3. 运行测试
+      - name: Run x.py test library/std
+        shell: cmd                  # 也可以用 powershell
+        run: python x.py test library/std
+        # 默认工作目录就是 ${{ github.workspace }}，即仓库根目录

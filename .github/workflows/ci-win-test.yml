@@ -1,6 +1,10 @@
 name: CI-win-test
 
 on:
+  push:
+    branches: [ test ]      # 当 win-af-unix 分支有推送时触发
+  pull_request:
+    branches: [ test ]
   # 手动触发事件
   workflow_dispatch:
     inputs:
@@ -15,7 +19,7 @@ jobs:
     runs-on: windows-latest         # Windows 服务器环境
     steps:
       # 1. 检出指定分支（默认就是仓库本身）
-      - name: Checkout win-af-unix
+      - name: Checkout test
         uses: actions/checkout@v4
         with:
           ref: win-af-unix          # 明确指定分支
